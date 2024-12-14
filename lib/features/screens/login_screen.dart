@@ -63,22 +63,12 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } on FirebaseAuthException catch (e) { // обработка ошибок
       print(e.code);
-
-      if (e.code == 'user-not-found' || e.code == 'wrong-password') { // если такой почты нет или пароль неверен
         SnackBarService.showSnackBar(
           context,
           'Неправильный email или пароль. Повторите попытку',
           true,
         );
         return;
-      } else {
-        SnackBarService.showSnackBar( // любые другие ошибки
-          context,
-          'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
-          true,
-        );
-        return;
-      }
     }
 
     // очистка контроллеров после успешного входа
@@ -90,7 +80,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    clearInputs();// очищаем поля ввода при возврате на экран
 
     return Scaffold(
       resizeToAvoidBottomInset: false, // при появлении клавиатуры, сдвига интерфейса не происходит
