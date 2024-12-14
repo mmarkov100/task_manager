@@ -25,6 +25,20 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController passwordTextInputController; // поле ввода для пароля
   final formKey = GlobalKey<FormState>(); // ключ для проверки валидности, используется для управления и проверки формы
 
+  @override
+  void initState() {
+    super.initState();
+    emailTextInputController = TextEditingController(); // Инициализация контроллера для почты
+    passwordTextInputController = TextEditingController(); // Инициализация контроллера для пароля
+  }
+
+  @override
+  void dispose() { // Освобождение ресурсов, когда экран уничтожается
+    emailTextInputController.dispose();
+    passwordTextInputController.dispose();
+    super.dispose();
+  }
+
   void clearInputs() { // чистит поля ввода данных
     emailTextInputController.clear();
     passwordTextInputController.clear();

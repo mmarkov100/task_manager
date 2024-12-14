@@ -26,6 +26,21 @@ class _SignUpScreen extends State<SignUpScreen> {
   TextEditingController passwordTextRepeatInputController = TextEditingController(); // поле ввода для пароля 2
   final formKey = GlobalKey<FormState>(); // ключ для проверки валидности, используется для управления и проверки формы
 
+  @override
+  void initState() {
+    super.initState();
+    emailTextInputController = TextEditingController(); // Инициализация контроллера для почты
+    passwordTextInputController = TextEditingController(); // Инициализация контроллера для пароля
+    passwordTextRepeatInputController = TextEditingController(); // Инициализация контроллера для пароля
+  }
+
+  @override
+  void dispose() { // Освобождение ресурсов, когда экран уничтожается
+    emailTextInputController.dispose();
+    passwordTextInputController.dispose();
+    passwordTextRepeatInputController.dispose();
+    super.dispose();
+  }
 
   void clearInputs() { // чистит поля ввода данных
     emailTextInputController.dispose();
